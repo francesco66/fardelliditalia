@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +12,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CommentFactory extends Factory
 {
+    protected $model = Comment::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,9 +22,9 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'body' => fake()->paragraph(),
-            'user_id' => fake()->numberBetween(1, 10),
-            'post_id' => fake()->numberBetween(1, 10),
+            'user_id' => User::factory(),
+            'post_id' => Post::factory(),
+            'body' => $this->faker->paragraph()
         ];
     }
 }

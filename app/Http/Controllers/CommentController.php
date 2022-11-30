@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+
     public function store(Post $post)
     {
-        //  dd(request()->all());
-        dd($post->id);
+        // dd(request());
+        // dd(request()->post->id);
 
         request()->validate([
             'body' => 'required'
@@ -18,7 +19,7 @@ class CommentController extends Controller
 
         $post->comments()->create([
             'user_id' => request()->user()->id,
-            'post_id' => $post->id,
+            'post_id' => request()->post->id,
             'body' => request('body')
         ]);
 

@@ -36,7 +36,7 @@ Route::get('/posts/{slug}/publish', [PostsController::class, 'publish']);
 Route::post('newsletter', NewsletterController::class);
 
 // Comments
-Route::post('/posts/{slug}/comments', [CommentController::class, 'store']);
+Route::post('/posts/{post:slug}/comments', [CommentController::class, 'store']);
 
 // Google and Facebook login
 // Route::middleware('guest')->group(function () {
