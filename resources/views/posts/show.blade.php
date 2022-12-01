@@ -87,7 +87,7 @@
             <h3 class="mb-4 text-lg md:text-2xl font-semibold text-gray-900">Commenti</h3>
             <div class="space-y-4">
             @foreach ( $post->comments as $comment )
-                <x-fardelli.comment :comment="$comment"/>
+                <x-fardelli.comment :comment="$comment" :post="$post"/>
             @endforeach
         </div>
     </section>

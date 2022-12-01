@@ -1,4 +1,4 @@
-@props(['comment', 'post'])
+@props(['comment'])
 
 <div class="flex">
     <div class="flex-shrink-0 mr-3">
@@ -8,15 +8,6 @@
         <strong>{{ $comment->author->name }}</strong> <span class="text-xs text-gray-400">&#8226; {{ $comment->created_at->formatLocalized('%A %d %B %Y') }}</span>
         <p class="text-sm">{{ $comment->body}}</p>
         <!-- repliche -->
-        <div class="mt-4 flex items-center">
-            <div class="flex -space-x-2 mr-2">
-                <img class="rounded-full w-6 h-6 border border-white" src="https://i.pravatar.cc/100" alt="">
-                <img class="rounded-full w-6 h-6 border border-white" src="https://i.pravatar.cc/100" alt="">
-            </div>
-            <div class="text-sm text-gray-500 font-semibold">
-            {{ $comment->replies->count() }} repliche
-            </div>
-        </div>
         <a href="" id="reply"></a>
         <form method="post" action="/posts/{{ $post->slug }}/reply">
             @csrf
@@ -30,6 +21,9 @@
                 <button type="submit" class="p-2 my-2 text-lg text-white bg-blue-500 hover:bg-blue-600 rounded-xl">Replica</button>
             </div>
         </form>
+        <div>
+            <p>{{ $comment->replies->count() }}</p>
+        </div>
     </div>
 </div>
 
