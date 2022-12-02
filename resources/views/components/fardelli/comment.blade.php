@@ -7,6 +7,7 @@
     <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
         <strong>{{ $comment->author->name }}</strong> <span class="text-xs text-gray-400">&#8226; {{ $comment->created_at->formatLocalized('%A %d %B %Y') }}</span>
         <p class="text-sm">{{ $comment->body}}</p>
+
         <!-- repliche -->
         <div class="mt-4 flex items-center">
             <div class="flex -space-x-2 mr-2">
@@ -14,36 +15,31 @@
                 <img class="rounded-full w-6 h-6 border border-white" src="https://i.pravatar.cc/100" alt="">
             </div>
             <div class="text-sm text-gray-500 font-semibold">
-            {{ $comment->replies->count() }} repliche
+                {{ $comment->replies->count() }} repliche
             </div>
         </div>
-        <a href="" id="reply"></a>
-        <form method="post" action="/posts/{{ $post->slug }}/reply">
+{{--
+        <form method="POST" action="/posts/{{ $post->slug }}/reply" class="border rounded-lg px-4 py-2 sm:px-6 sm:py-4">
             @csrf
-            <div class="">
-                <input type="text" name="body" class="" />
-                <input type="hidden" name="post_id" value="{{ $post->id }}" />
-                <input type="hidden" name="comment_id" value="{{ $comment->id }}" />
+            @auth()
+            <h1 class="text-lg mb-4">Vuoi rispondere?</h1>
+            <div>
+                <textarea name="body" id="body" class="w-full text-sm rounded-lg outline-none focus:outline-none focus:ring bg-slate-100 text-slate-700" placeholder="la tua risposta..." required></textarea>
+
+                @error('body')
+                <span class="text-sm text-red-600">{{ $message }}</span>
+                @enderror
+
             </div>
-            <div class="">
-                <!-- <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" value="Reply" /> -->
-                <button type="submit" class="p-2 my-2 text-lg text-white bg-blue-500 hover:bg-blue-600 rounded-xl">Replica</button>
+            <div>
+                <button type="submit" class="p-2 my-2 text-lg text-white bg-blue-500 hover:bg-blue-600 rounded-xl">Pubblica</button>
             </div>
+            @endauth
         </form>
+--}}
+        <!-- Se ci sono repliche -->
+        @foreach ( $comment->replies as $replie )
+            <x-fardelli.replies :comment="$replie" :post="$post"></x-fardelli.replies>
+        @endforeach
     </div>
 </div>
-
-{{-- <a href="" id="reply"></a>
-<form method="post" action="{{ route('reply.add') }}">
-@csrf
-<div class="form-group">
-    <input type="text" name="comment" class="form-control" />
-    <input type="hidden" name="post_id" value="{{ $post->id }}" />
-    <input type="hidden" name="comment_id" value="{{ $comment->id }}" />
-</div>
-<div class="form-group">
-    <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" value="Reply" />
-</div>
-</form>
-@include('post.partials.replies', ['comments' => $comment->replies])
---}}
