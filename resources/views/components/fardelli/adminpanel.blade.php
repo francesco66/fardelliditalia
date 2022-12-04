@@ -14,9 +14,7 @@
         <div class="mt-2">
 
             <?php $status=$post->status ?>
-            @if ($status=='draft')
-                <p>stato: <span class="text-center px-2 bg-blue-300 md:w-1/3">bozza</span></p>
-            @elseif ($status=='published')
+            @if ($status=='published')
                 <p>stato: <span class="text-center px-2 bg-green-300 md:w-1/3">pubblicato</span></p>
             @elseif ($status=='deleted')
                 <p>stato: <span class="text-center px-2 bg-red-500 md:w-1/3">cancellato</span></p>

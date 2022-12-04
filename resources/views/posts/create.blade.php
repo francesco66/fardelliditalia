@@ -41,7 +41,12 @@
                     </a>
                 </div>
 
-                <x-fardelli.input name="image_author" nome="autore dell'immagine (opzionale)" />
+                <div class="mt-4 flex flex-col">
+                    <label for="image_author" class="text-xl pb-2">DESCRIZIONE (opzionale)</label>
+                    <input name="image_author" type="text" value="{{ old('image_author') }}" class="rounded border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+
+                <!-- <x-fardelli.input name="image_author" nome="autore dell'immagine (opzionale)" /> -->
 
             </div>
 

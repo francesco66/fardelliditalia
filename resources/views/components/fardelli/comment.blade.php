@@ -14,9 +14,9 @@
                 <img class="rounded-full w-6 h-6 border border-white" src="https://i.pravatar.cc/100" alt="">
                 <img class="rounded-full w-6 h-6 border border-white" src="https://i.pravatar.cc/100" alt="">
             </div>
-            <div class="text-sm text-gray-500 font-semibold">
+{{--            <div class="text-sm text-gray-500 font-semibold">
                 {{ $comment->replies->count() }} repliche
-            </div>
+            </div> --}}
         </div>
 {{--
         <form method="POST" action="/posts/{{ $post->slug }}/reply" class="border rounded-lg px-4 py-2 sm:px-6 sm:py-4">
@@ -36,10 +36,10 @@
             </div>
             @endauth
         </form>
---}}
         <!-- Se ci sono repliche -->
         @foreach ( $comment->replies as $replie )
             <x-fardelli.replies :comment="$replie" :post="$post"></x-fardelli.replies>
         @endforeach
+        --}}
     </div>
 </div>

@@ -22,9 +22,6 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->string('image_author')->nullable();
             $table->mediumText('body');
-            // status: draft, published, deleted
-
-            // DEFAULT TO DRAFT!
             $table->string('status')->default('published');
             $table->timestamps();
             $table->timestamp('published_at')->nullable();

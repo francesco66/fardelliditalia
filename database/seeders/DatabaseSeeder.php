@@ -35,7 +35,8 @@ class DatabaseSeeder extends Seeder
 
         Comment::factory()
         ->count(20)
-        ->create(['parent_id' => '0']);
+        ->create();
+        // ->create(['parent_id' => '0']);
 
     }
 }

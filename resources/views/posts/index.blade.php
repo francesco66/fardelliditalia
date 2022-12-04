@@ -16,34 +16,36 @@
         <div class="grid lg:grid-cols-3 gap-2 mt-20">
 
             @foreach ($posts as $post)
-            <div class="lg:px-6 px-2 lg:py-10 py-2 bg-violet-200 rounded-xl border-4 border-violet-900">
-                <h1 class="text-5xl pb-3">{{ $post->title }}</h1>
+                @if ($post->status=='published')
+                <div class="lg:px-6 px-2 lg:py-10 py-2 bg-violet-200 rounded-xl border-4 border-violet-900">
+                    <h1 class="text-5xl pb-3">{{ $post->title }}</h1>
 
-                <a href="/posts/?author={{ $post->author->name }}" class="inline-block text-sm text-slate-700 pb-3">di
-                    {{ $post->author->name }}</a><span class="text-xs text-slate-500">
-                    &#8226; {{ $post->created_at->formatLocalized('%A %d %B %Y') }}</span>
+                    <a href="/posts/?author={{ $post->author->name }}" class="inline-block text-sm text-slate-700 pb-3">di
+                        {{ $post->author->name }}</a><span class="text-xs text-slate-500">
+                        &#8226; {{ $post->created_at->formatLocalized('%A %d %B %Y') }}</span>
 
-                <div class="pb-5 text-xs">
-                    @if ($post->image_path)
-                    <img class="" src="{{ asset('img/posts/' . $post->image_path) }}" alt="Post image" />
-                    @else
-                    <img class="" src="https://picsum.photos/400/300" alt="Post image" />
+                    <div class="pb-5 text-xs">
+                        @if ($post->image_path)
+                        <img class="" src="{{ asset('img/posts/' . $post->image_path) }}" alt="Post image" />
+                        @else
+                        <img class="" src="https://picsum.photos/400/300" alt="Post image" />
+                        @endif
+                        <!-- <img class="" src="{{ asset('img/posts/' . $post->image_path) }}" alt="post image" /> -->
+                        <!--  se c'è l'autore dell'immagine... -->
+                        @if ($post->image_author)
+                            <span class="text-slate-500">foto di {{ $post->image_author }}</span>
+                        @endif
+                    </div>
+                    <!-- excerpt (opzionale) -->
+                    @if ($post->excerpt)
+                        <h1 class="text-3xl pb-3">{{ $post->excerpt }}</h1>
                     @endif
-                    <!-- <img class="" src="{{ asset('img/posts/' . $post->image_path) }}" alt="post image" /> -->
-                    <!--  se c'è l'autore dell'immagine... -->
-                    @if ($post->image_author)
-                    <span class="text-slate-500">foto di {{ $post->image_author }}</span>
-                    @endif
+                    <p class="mb-4 text-lg">{!! Str::limit($post->body, 200) !!}</p>
+                    <div class="flex justify-end">
+                        <a href='/posts/{{ $post->slug }}' class="border-4 border-violet-900 bg-violet-400 px-2 rounded-xl text-slate-100">LEGGI TUTTO</a>
+                    </div>
                 </div>
-                <!-- excerpt (opzionale) -->
-                @if ($post->excerpt)
-                <h1 class="text-3xl pb-3">{{ $post->excerpt }}</h1>
                 @endif
-                <p class="mb-4 text-lg">{!! Str::limit($post->body, 200) !!}</p>
-                <div class="flex justify-end">
-                    <a href='/posts/{{ $post->slug }}' class="border-4 border-violet-900 bg-violet-400 px-2 rounded-xl text-slate-100">LEGGI TUTTO</a>
-                </div>
-            </div>
             @endforeach
 
         </div>

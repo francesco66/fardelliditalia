@@ -28,11 +28,17 @@
                 <p>Saremo quello che vorremo.</p>
             </div>
 
-            <iframe class="m-auto w-5/6 md:w-3/5 center aspect-video"
+            <video class="m-auto w-5/6 md:w-3/5 outline center aspect-video"
+                src="{{ asset('videos/Fardelli-spot2.mp4') }}"
+                controls
+            >
+            </video>
+
+            <!-- <iframe class="m-auto w-5/6 md:w-3/5 center aspect-video"
                 src="{{ url('https://www.youtube.com/embed/DqtQJaNftFQ') }}"
                 frameborder="0"
                 allowfullscreen>
-            </iframe>
+            </iframe> -->
 
         </section>
 

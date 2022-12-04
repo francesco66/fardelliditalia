@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Notifications\PostToFB;
 
 class PostsController extends Controller
 {
@@ -65,7 +66,7 @@ class PostsController extends Controller
         // dd($request->validate);
         $slug = Str::slug($request->title);
 
-        Post::create([
+        $post = Post::create([
             // 'title' => $request->input('title'),
             'title' => $request->title,
             'excerpt' => $request->excerpt,
@@ -75,25 +76,11 @@ class PostsController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        // di default il post viene creato con status draft (bozza)
-        // lo può vedere solo il creatore del post e avrà un pulsante per pubblicarlo
+        // to facebook?
+        // $user = $post->user();
+        // $post->notify(new PostToFB());
 
-        // dd($slug);
         return view('posts.show')->with('post', Post::where('slug', $slug)->first())->with('success', 'Nuovo post creato con successo!');
-        // return redirect('/posts/show/' . $post->slug)->with('success', 'Nuovo post creato con successo!');
-    }
-
-    // PUBBLICA
-    public function publish($slug)
-    {
-        //dd('PUBLISH');
-
-        Post::where('slug', $slug)
-            ->update([
-                'status' => 'published'
-            ]);
-
-        return redirect('/posts')->with('success', 'Post pubblicato con successo!');
     }
 
     /**

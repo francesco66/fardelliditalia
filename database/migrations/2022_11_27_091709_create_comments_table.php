@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             // reply?
-            $table->integer('parent_id')->unsigned();
+            // $table->integer('parent_id')->unsigned();
 
             $table->text('body');
             $table->timestamps();

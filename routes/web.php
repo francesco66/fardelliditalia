@@ -29,16 +29,13 @@ Route::get('/fardelliditalia', [HomeController::class, 'fardelliditalia']);
 // Posts
 Route::resource('/posts', PostsController::class);
 
-// pubblica
-Route::get('/posts/{slug}/publish', [PostsController::class, 'publish']);
-
 // Newsletter
 Route::post('newsletter', NewsletterController::class);
 
 // Comments
 Route::post('/posts/{post:slug}/comments', [CommentController::class, 'store']);
 // Replies
-Route::post('/posts/{post:slug}/reply', [CommentController::class, 'replyStore']);
+// Route::post('/posts/{post:slug}/reply', [CommentController::class, 'replyStore']);
 
 // Google and Facebook login
 // Route::middleware('guest')->group(function () {

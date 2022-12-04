@@ -30,25 +30,18 @@
 
     <!-- CONTROLLI solo per autore del post -->
     @if (Auth::check() && auth()->user()->name == $post->user->name)
-    <section class="flex flex-row md:justify-start justify-around items-center gap-4 border-4 border-violet-900 rounded-3xl mt-10 md:m-10 m-2 md:px-4 px-2 md:py-4 py-2 bg-black">
-        <div class="">
-            <a href="/posts/{{ $post->slug }}/edit" class="h-1 p-2 text-lg text-white bg-blue-600 rounded-xl">Modifica</a>
-        </div>
-        <div class="">
-            @if ($post->status=='draft')
-            <a href="/posts/{{ $post->slug }}/publish" class="h-1 p-2 text-lg text-white bg-green-600 rounded-xl">Pubblica</a>
-            @endif
-        </div>
-        <div class="">
-            @if ($post->status!='deleted')
-            <form action="/posts/{{ $post->slug }}" method="POST" class="m-0 p-0">
-                @csrf
-                @method('delete')
-                <button class="p-2 text-lg text-white bg-red-600 rounded-xl">Cancella</button>
-            </form>
-            @endif
-        </div>
-    </section>
+        <section class="flex flex-row md:justify-start justify-around items-center gap-4 border-4 border-violet-900 rounded-3xl mt-10 md:m-10 m-2 md:px-4 px-2 md:py-4 py-2 bg-black">
+            <div class="">
+                <a href="/posts/{{ $post->slug }}/edit" class="h-1 p-2 text-lg text-white bg-blue-600 rounded-xl">Modifica</a>
+            </div>
+            <div class="">
+                <form action="/posts/{{ $post->slug }}" method="POST" class="m-0 p-0">
+                    @csrf
+                    @method('delete')
+                    <button class="p-2 text-lg text-white bg-red-600 rounded-xl">Cancella</button>
+                </form>
+            </div>
+        </section>
     @endif
 
     <!-- COMMENTS -->
